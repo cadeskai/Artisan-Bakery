@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Aura Artisan Bakery</title>
+<meta name="description" content="Complete your Aura Artisan Bakery order and confirm via WhatsApp.">
+<link rel="canonical" href="https://aura-artisan-bakery.example.com/checkout.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="loader"><div class="dough"></div><span class="loader-text">Proofing something delicious…</span></div>
+<div id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="logo"><span class="seal"></span>Aura Artisan Bakery</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
+      <a href="cart.html" class="icon-btn" aria-label="View cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a>
+      <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="page-banner">
+  <span class="eyebrow">One last step</span>
+  <h1>Checkout</h1>
+  <p class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Cart</a> / Checkout</p>
+</div>
+
+<section style="padding-top:1rem;">
+  <div class="container grid checkout-layout">
+    <div class="checkout-form-card">
+      <h2 style="font-size:1.4rem;">Delivery Details</h2>
+      <form id="checkout-form">
+        <div class="form-row">
+          <div class="form-field"><label for="chk-name">Customer Name *</label><input type="text" id="chk-name" required></div>
+          <div class="form-field"><label for="chk-phone">Phone Number *</label><input type="tel" id="chk-phone" pattern="[0-9]{10,13}" required></div>
+        </div>
+        <div class="form-field"><label for="chk-address">Address *</label><input type="text" id="chk-address" required></div>
+        <div class="form-row">
+          <div class="form-field"><label for="chk-landmark">Landmark</label><input type="text" id="chk-landmark"></div>
+          <div class="form-field"><label for="chk-city">City *</label><input type="text" id="chk-city" required></div>
+        </div>
+        <div class="form-field" style="max-width:220px;"><label for="chk-pincode">Pincode *</label><input type="text" id="chk-pincode" pattern="[0-9]{6}" required></div>
+        <div class="form-field"><label for="chk-notes">Order Notes</label><textarea id="chk-notes" rows="3" placeholder="E.g. write 'Happy Birthday Riya' on the cake"></textarea></div>
+
+        <h2 style="font-size:1.2rem; margin-top:1.8rem;">Payment Method</h2>
+        <label class="payment-option"><input type="radio" name="payment" checked><div><b>Cash on Delivery</b><div style="font-size:.8rem;color:var(--espresso-70);">Pay in cash when your order arrives</div></div></label>
+      </form>
+    </div>
+
+    <div class="order-summary-card">
+      <h3 style="margin-bottom:1rem;">Order Summary</h3>
+      <div id="checkout-order-lines"></div>
+      <div class="summary-row" style="border-top:1px solid var(--line); margin-top:.8rem; padding-top:.8rem;"><span>Subtotal</span><span id="sum-subtotal">₹0</span></div>
+      <div class="summary-row"><span id="promo-label">Discount</span><span id="sum-discount">− ₹0</span></div>
+      <div class="summary-row"><span>Delivery Fee</span><span id="sum-delivery">₹60</span></div>
+      <div class="summary-row total"><span>Grand Total</span><span id="sum-total">₹0</span></div>
+
+      <button type="button" class="whatsapp-order-btn" id="whatsapp-order-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.7.8 2 1 .3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>
+        Order on WhatsApp
+      </button>
+      <p style="font-size:.78rem; color:var(--espresso-70); text-align:center; margin-top:.8rem;">You'll be redirected to WhatsApp to confirm your order with us directly.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color:var(--cream)"><span class="seal"></span>Aura Artisan Bakery</a>
+        <p>A neighborhood bakery in Bandra West baking small-batch cakes, bread and pastries every morning since 2013.</p>
+      </div>
+      <div><h4>Explore</h4><div class="footer-links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About Us</a><a href="gallery.html">Gallery</a></div></div>
+      <div><h4>Support</h4><div class="footer-links"><a href="contact.html">Contact</a><a href="cart.html">Cart</a><a href="checkout.html">Checkout</a><a href="testimonials.html">Testimonials</a></div></div>
+      <div><h4>Contact</h4><div class="footer-links"><a href="tel:+919167305507">+91 91673 05507</a><a href="mailto:hello@auraartisanbakery.example.com">hello@auraartisanbakery.example.com</a><a href="contact.html">14 Amber Lane, Bandra West, Mumbai</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Aura Artisan Bakery. All rights reserved.</span><span>Crafted with ❤ in Mumbai</span></div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.getElementById("whatsapp-order-btn").addEventListener("click", () => {
+  const cart = getCart();
+  if(cart.length === 0){ showToast("Your cart is empty", true); return; }
+
+  const name = document.getElementById("chk-name").value.trim();
+  const phone = document.getElementById("chk-phone").value.trim();
+  const address = document.getElementById("chk-address").value.trim();
+  const landmark = document.getElementById("chk-landmark").value.trim();
+  const city = document.getElementById("chk-city").value.trim();
+  const pincode = document.getElementById("chk-pincode").value.trim();
+  const notes = document.getElementById("chk-notes").value.trim();
+
+  if(!name || !phone || !address || !city || !pincode){
+    showToast("Please fill in all required fields", true);
+    document.getElementById("checkout-form").reportValidity();
+    return;
+  }
+
+  sendWhatsAppOrder({ name, phone, address, landmark, city, pincode, notes });
+  showToast("Redirecting you to WhatsApp to confirm your order…");
+});
+</script>
+</body>
+</html>
